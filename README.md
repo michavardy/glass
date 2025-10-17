@@ -52,7 +52,9 @@ This project is a proof-of-concept (PoC) for an email spam filter using machine 
     a. web app
     b. client id or client secret
 4. oath2 flow
+
     a. user clicks connect gmail
+
     b. redirects to google oath2 consent screen with scopes
 
     ```
@@ -60,9 +62,11 @@ This project is a proof-of-concept (PoC) for an email spam filter using machine 
     https://www.googleapis.com/auth/gmail.modify
     https://www.googleapis.com/auth/gmail.metadata
     ```
-    
+
     c. user logs in and consents -> app gets authorization code
+
     d. exchange auth code for access token + refresh token
+
     e. save refresh token securely for refreshing access
 
 ### Historical data
@@ -96,6 +100,7 @@ This project is a proof-of-concept (PoC) for an email spam filter using machine 
 ### Listening for Actions
 
     a. enable google cloud pub/sub
+
     b. setup a watch on each user mailbox
 
 #### Subscribe to Pub/Sub
@@ -112,8 +117,11 @@ This project is a proof-of-concept (PoC) for an email spam filter using machine 
 ### User Actions
 
 I want to record the following user actions:
+
     - delete
+
     - label
+
     - read
 
 # Spam Suggestion Development
@@ -254,11 +262,15 @@ use LLM to extract a set of keywords that characterize this email
         - frequent words are candiate for keywords
     
     - TF-IDF
+
         - frequent words normalized by number of emails containing term
     
     - NLP Libraries
+
         - RAKE: rapic automatic keyword extraction
+
         - KeyBERT: embeddings for semantic keyword extraction
+
         - YAKE: yet another keyword extractor
 
 - **NOTE** 
@@ -267,54 +279,99 @@ use LLM to extract a set of keywords that characterize this email
 #### ML Classification: features
 
 - use the following features to classify
+
     - sender domain meta-data
+
         - isAccepted
+
         - isUnverified
+
         - isMissSpelled
+
         - isGeneric
+
     - sender email 
+
         - one-hot
+
         - embedding
+
     - sender meta-data
+
         - isName
+
         - isCompany
+
         - isGeneric
+
         - isSuspicious
+
     - frequency of emails
+
     - Subject features
+
         - subject embeddings similarity to labeled
+
         - subject length
+
         - subject keyword similarity to labeled
+
     - Content features
+
         - content embeddings similarity to labeled
+
         - content length
+
         - content keyword similarity to labeled 
+
         - contains links
+
+
 
 #### ML Classification: LLM extract features
 
 using LLM we can extract additional features
 
     - email intent / porpuse
+    
         - promotion
+        
         - personal
+        
         - notification
+        
         - phishing
+        
         - scam
+        
         - social
+        
     - sentiment: positive, negative, neutral
+    
     - isManipulative
+    
     - emotion
+    
         - urgency
+        
         - fear
+        
         - excitment
+        
         - flattery
+        
     - formality
+    
         - informal
+        
         - formal
+        
         - grammatical correctness
+        
         - verbosity
+        
         - usuall phrasing
+        
 
 ##### ML classifications: Models
 
