@@ -54,12 +54,13 @@ This project is a proof-of-concept (PoC) for an email spam filter using machine 
 4. oath2 flow
     a. user clicks connect gmail
     b. redirects to google oath2 consent screen with scopes
-        ```text
-        https://www.googleapis.com/auth/gmail.readonly
-        https://www.googleapis.com/auth/gmail.modify
-        https://www.googleapis.com/auth/gmail.metadata
 
-        ```
+    ```
+    https://www.googleapis.com/auth/gmail.readonly
+    https://www.googleapis.com/auth/gmail.modify
+    https://www.googleapis.com/auth/gmail.metadata
+    ```
+    
     c. user logs in and consents -> app gets authorization code
     d. exchange auth code for access token + refresh token
     e. save refresh token securely for refreshing access
